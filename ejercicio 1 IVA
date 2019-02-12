@@ -1,0 +1,18 @@
+//librerias
+#include "stdafx.h"
+#include <iostream>
+#include "stdio.h"
+#include "stdlib.h"
+#include "conio.h"
+ using namespace std;
+ //prototipos
+ //prgrama principial
+void main()
+{ float entrada, salida,n;
+   cout<<"ingrese el precio inicial"<<endl;
+   cin >> entrada;
+   n=entrada*0.13;
+   salida=entrada+n;
+   cout<< "el precio final es: " << salida << endl;
+	getch();
+}
