@@ -1,0 +1,31 @@
+#include "stdafx.h"
+#include <iostream>
+#include "stdlib.h"
+#include "stdio.h"
+#include "conio.h"
+using namespace std;
+void calculo(float a, float b, float c)
+             { float x1, x2, d;
+               d=(b*b)-4*a*c;
+			   cout << d << endl;
+			   if(d>=0)
+			     { x1=-b+sqrt(d)/(2*a);
+			       x2=-b-sqrt(d)/(2*a);
+				   cout << "Solucion real 1: " << x1 << " Solucion real 2: " << x2;
+			     }else{ cout << "Solucion imaginaria" << endl;}
+				 
+             }
+void main()
+{ float a, b, c, x1, x2;
+  do{
+      cout <<"ingrese a:"<<endl;
+      cin >> a;
+    }while(a==0);
+  cout <<"ingrese b:"<<endl;
+  cin >> b;
+  cout <<"ingrese c:"<<endl;
+  cin >> c;
+  calculo(a, b, c);
+  getch();
+}
+
