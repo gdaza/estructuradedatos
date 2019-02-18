@@ -1,0 +1,24 @@
+#include "stdafx.h"
+#include <iostream>
+#include "stdlib.h"
+#include "stdio.h"
+#include "conio.h"
+using namespace std;
+int potencia(int x, int y)
+{ int po=1, cont=1;
+  while(cont<=y)
+       { cont++;
+		   po=po*x;
+       }
+  return(po);
+}
+void main()
+{ int x, y, p;
+    cout << "ingrese la base" << endl;
+	cin >> x;
+    cout << "ingrese el exponente" << endl;
+	cin >> y;
+	p=potencia(x,y);
+	cout << p << endl;
+	getch();
+}
