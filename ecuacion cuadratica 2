@@ -1,0 +1,62 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+using namespace std;
+
+float discriminante(float a, float b, float c);
+float reales(float d, float a, float b, float &x1);
+float unica(float a, float b);
+
+void main()
+{ char resp;
+  float a, b, c, d, x1, x2;
+  do{
+     do{
+	     cout << "Ingrese a: " << endl;
+	     cin >> a;
+         }while(a==0);
+          cout << "Ingrese b: " << endl;
+	      cin >> b;
+	      cout << "Ingrese c: " << endl;
+	      cin >> c;
+	      d=discriminante(a,b,c);
+	if(d==0) 
+	  { 
+		  cout << "Solucion unica: "<< unica(a,b) << endl;
+	  }	
+	else 
+		if(d>0)
+		  {
+			  cout << "Solucion reales: \n" << endl;
+			  cout << "Solucion x1: " << reales(d,a,b,x2) << endl;
+			  cout << "Solucion x2: " << x2 << endl;
+		  }
+		else{
+			cout << "Soluciones imaginarias: " << endl;
+	        cout << "Solucion x1: " << -b/(2*a) << "+" << sqrt(-d)/(2*a) << "i" << endl;
+			cout << "Solucion x2: " << -b/(2*a) << "-" << sqrt(-d)/(2*a) << "i" << endl;
+		    }
+	getch();
+ cout <<endl<< "Desea continuar (s): ";
+ cin >> resp;
+  }while(resp == 's');
+}
+float discriminante(float a, float b, float c)
+{
+	float dis;
+	dis=b*b-4*a*c;
+	return(dis);
+}
+float reales(float d, float a, float b, float &x1)
+{
+	float x2;
+	x2=(-b+ sqrt(d))/(2*a);
+	x1=(-b- sqrt(d))/(2*a);
+	return x2;
+}
+float unica(float a, float b)
+{
+	float x;
+	x=-b/(2*a);
+	return x;
+}
