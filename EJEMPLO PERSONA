@@ -1,0 +1,51 @@
+EJEMPLO PERSONA
+//PERSONA.H
+#pragma once
+class Persona
+{
+private: int CI;
+		 int edad;
+public:
+	Persona(int _CI, int _edad); //constructor
+	~Persona(void); //destructor
+	void leer();
+	void correr();
+};
+//PERSONA.CPP
+#include "StdAfx.h"
+#include "Persona.h"
+#include <iostream>
+using namespace std;
+
+Persona::Persona(int _CI, int _edad)
+{ // se inicializan los atributos
+	CI=_CI;
+    edad=_edad;
+}
+
+
+Persona::~Persona(void)
+{
+}
+void Persona::leer()
+{
+	cout << "Soy carnet " << CI << " y estoy leyendo."<<endl;
+}
+void Persona::correr()
+{
+	cout << "Tengo  " << edad << " años y estoy corriendo." ;
+}
+//MAIN
+#include "stdafx.h"
+#include "Persona.h"
+#include <iostream>
+#include "conio.h"
+using namespace std;
+
+void main()
+{
+	Persona p1(6362425,1); //crear una instancia
+	p1.leer();
+	p1.correr();
+	getch();
+}
