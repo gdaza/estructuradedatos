@@ -1,0 +1,171 @@
+#include "stdafx.h"
+#include "Fecha.h"
+#include "iostream"
+#include <string>
+#include "conio.h"
+using namespace std;
+void main()
+{
+	string f1;
+    bool band;
+	int opc;
+	do{
+	cout<<"Seleccione el formato de fecha que desea ingresar"<<endl;
+	cout<<"       [1] Formato dia/mes/anio"                   <<endl;
+	cout<<"       [2] Formato  diamesanio"                    <<endl;
+	cout<<"       [3] Ingresar por separado dia, mes, anio"   <<endl;
+	cout<<"           Elija la opcion que prefiera: "         <<endl;
+	cin>>opc;
+	cout<<endl;
+	if(opc<1 || opc>3){
+		cout<<"Opcion no valida"<<endl;
+	}
+	}while(opc<1 || opc>3);
+	switch(opc)
+	{case 1:
+	   
+		cout<<"Ingrese la fecha (dia/mes/anio): ";
+		getline(cin,f1);
+		/*Fecha fecha2(f1);
+		fecha2.mostrar();
+		if (band=fecha2.validar()==true)
+			cout<<"\nEs una fecha valida";
+		else
+			cout<<"\nEs una fecha no valida"<<endl;*/
+	   
+		break;
+	case 2:
+		{
+		long f2;
+		bool band;
+		cout<<"Ingrese la fecha (diamesanio): ";
+		cin>>f2;
+		Fecha fecha3(f2);
+		fecha3.mostrar();
+		if (band=fecha3.validar()==true)
+			cout<<"\nEs una fecha valida";
+		else
+			cout<<"\nEs una fecha no valida"<<endl;
+		}
+		break;
+	case 3:
+		{
+		int dd, mm, aa;
+		bool band;
+		cout<<"Ingrese el dia: ";
+		cin>>dd;
+		cout<<"\nIngrese el mes: ";
+		cin>>mm;
+		cout<<"\nIngrese el anio: ";
+		cin>>aa;
+		Fecha fecha1(dd,mm,aa);
+		fecha1.mostrar();
+		band=fecha1.validar();
+		if (band==true)
+			cout<<"\nEs una fecha valida";
+		else
+			cout<<"\nEs una fecha no valida"<<endl;
+		}
+		break;
+	default:
+		{
+		  cout<<"ERROR";
+		  break;
+		}
+	}
+	_getch();
+}
+
+
+
+#include "StdAfx.h"
+#include "Fecha.h"
+#include <iostream>
+#include <string>
+using namespace std;
+
+Fecha::Fecha(int _dia, int _mes, int _anio)
+{
+	dia=_dia;
+	mes=_mes;
+	anio=_anio;
+}
+Fecha::Fecha(string f1)
+{
+	if((f1.at(2)=='/') && (f1.at(5)=='/'))
+	{
+		int dia=(atoi(f1.substr(0,2).c_str()));
+		int mes=(atoi(f1.substr(3,2).c_str()));
+		int anio=(atoi(f1.substr(6,4).c_str()));
+	}
+}
+Fecha::Fecha(long f2)
+{
+	dia= int(f2/1000000);
+	mes= int((f2-(dia*1000000))/10000);
+	anio= int((f2-(dia*1000000))-mes*10000);
+}
+void Fecha::mostrar()
+{ 
+	cout<<dia<<" "<<mes<<" "<<anio;
+}
+
+bool Fecha::validar()
+{
+	bool K=true;
+	if (mes<=12 && mes>0){
+			if(mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12){
+			  if (dia>=1 && dia<=31){
+				 return K;
+			  }else{
+				  K=false;
+			  }
+			}else{ 
+				if (mes==4 || mes==6|| mes==9|| mes==11){
+				   if(dia>=1 && dia<=30){
+					   return K;
+				   }else{
+						K=false;
+				   }
+				}else{ // Febrero
+				   if (anio%4==0 && anio%100!=100 || anio%400==0 ){
+					  if(dia>=1 && dia<=29){
+						  return K;
+					  }else{
+						  K=false;
+					  }
+				   }else{
+					  if(dia>=1 && dia<=28){
+							return K;
+					  }else{
+							K=false;
+					  }
+				  
+		           }
+               }
+			}
+	}else{
+		K=false;
+		return K;
+    }
+}
+
+Fecha::~Fecha(void)
+{
+}
+
+#pragma once
+#include <string>
+using namespace std;
+class Fecha
+{
+private:
+	int dia, mes, anio;
+public:
+	Fecha(int _dia, int _mes, int _anio);
+	Fecha(string f1);
+	Fecha(long f2);
+	void mostrar();
+	bool validar();
+	~Fecha(void);
+};
