@@ -1,0 +1,178 @@
+class Matriz
+{
+private:
+	int m1[20][20],m2[20][20],m3[20][20],f1,c1, f2, c2, f3, c3;
+public:
+	Matriz(int f1, int c1,int f2,int c2);
+	~Matriz(void);
+	void cargarmatriz();
+	void mostrarmatriz();
+	void traspuesta();
+	void inversa();
+	void suma();
+	void multiplicacion();
+};
+
+#include "StdAfx.h"
+#include "Matriz.h"
+#include <iostream>
+using namespace std;
+
+Matriz::Matriz(int _f1, int _c1,int _f2, int _c2)
+{
+	f1=_f1;
+	c1=_c1;
+	f2=_f2;
+	c2=_c2;
+}
+
+
+Matriz::~Matriz(void)
+{
+}
+void Matriz::cargarmatriz()
+{
+	for(int i=0; i<f1;i++)
+	{
+		for(int j=0;j<c1;j++)
+		{
+			cout<<"m["<<i<<"]"<<"["<<j<<"]: ";
+			cin >> m1[i][j];
+		}
+	}
+}
+void Matriz::mostrarmatriz()
+{
+	for(int i=0; i<f1;i++)
+	{
+		for(int j=0;i<c1;j++)
+		{
+			cout<<m1[i][j]<< " ";
+		}
+		cout<<endl;
+	}
+}
+void Matriz::traspuesta()
+{
+	for(int i=0; i<f1;i++)
+	{
+		for(int j=0;j<c1;j++)
+		{
+			cout<<m1[j][i]<<" ";
+		}
+		cout<<endl;
+	}
+}
+void Matriz::inversa()
+{
+}
+void Matriz::suma()
+{
+	for(int i=0;i<f1;i++)
+	{
+		for(int j=0; j<c1; j++)
+		{
+			cout<<"m2["<<i<<"]["<<j<<"]:";
+			cin>> m2[i][j];
+			m3[i][j]=m1[i][j]+m2[i][j];
+		}
+	}
+	for(int i=0;i<f1;i++)
+	{
+		for(int j=0; j<c1; j++)
+		{
+			cout<<m3[i][j]<<" ";
+		}
+		cout<<endl;
+	}
+}
+void Matriz::multiplicacion()
+{
+	int acum=0;
+	for(int i=0;i<f1;i++)
+	{
+		for(int j=0; j<c1; j++)
+		{
+			cout<<"m2["<<i<<"]["<<j<<"]:";
+			  cin>> m2[i][j];
+			for(int k=0;k<f1;k++)
+			{
+			  acum=acum+(m1[i][j]*m2[i][j]);
+			}
+			m3[i][j]=acum;
+		}
+	}
+	for(int i=0;i<f1;i++)
+	{
+		for(int j=0; j<c1; j++)
+		{
+			cout<<m3[i][j]<<" ";
+		}
+		cout<<endl;
+	}
+}
+
+
+#include "stdafx.h"
+#include <iostream>
+#include "Matriz.h"
+#include "conio.h"
+
+using namespace std;
+
+void main()
+{
+	int opc, f1, c1, f2, c2;
+	cout<<"Ingrese el numero de filas: ";
+	cin >> f1;
+	cout<<"Ingrese el numero de columnas: ";
+	cin >> c1;
+	cout<<"Ingrese el numero de filas: ";
+	cin >> f2;
+	cout<<"Ingrese el numero de columnas: ";
+	cin >> c2;
+	do{
+	    cout<<"-------------MENU------------"<<endl;
+	    cout<<"-----1. Matriz traspuesta------------"<<endl;
+	    cout<<"-----2. Matriz inversa---------------"<<endl;
+	    cout<<"-----3. Suma de matrices-------------"<<endl;
+	    cout<<"-----4. Multiplicacion de matrices---"<<endl;
+	    cout<<"-----5. salir------------------------"<<endl;
+		cin >> opc;
+		Matriz m1(f1,c1,f2,c2);
+	switch(opc)
+	{
+	case 1:
+		m1.cargarmatriz();
+		m1.traspuesta();
+		break;
+	case 2:
+	    //m1.cargarmatriz();
+		//m1.inversa();
+		//m1.mostrarmatriz();
+		break;
+	case 3:
+		if(f1==f2 && c1==c2)
+		{
+		    m1.cargarmatriz();
+		    m1.suma();
+		}else{cout<<"No se puede sumar";}
+		break;
+	case 4:
+		if(f1==c2)
+		{
+			m1.cargarmatriz();
+			m1.multiplicacion();
+		}
+		break;
+	case 5:
+		cout<<"Salir.";
+		break;
+	default:
+		cout<<"Error.";
+		break;
+	}
+	}while(opc!=5);
+	getch();
+}
+
