@@ -1,0 +1,98 @@
+#pragma once
+#include <iostream>
+#include <string>
+using namespace std;
+class persona
+{
+private:
+	string nombre;
+	int edad;
+public:
+	persona(string nombre, int edad);
+	~persona(void);
+	void mostrarpersona();
+};
+#include "StdAfx.h"
+#include "persona.h"
+#include <iostream>
+#include <string>
+using namespace std;
+
+persona::persona(string _nombre, int _edad)
+{
+	nombre=_nombre;
+	edad=_edad;
+}
+persona::~persona(void)
+{
+}
+void persona::mostrarpersona()
+{
+	cout<<"su nombre es: "<<nombre<<" y tiene: "<<edad<<"años"<<endl;
+}
+#pragma once
+#include "persona.h"
+#include <iostream>
+#include <string>
+using namespace std;
+class alumno: public persona
+{
+private:
+	string codigo;
+	float nota;
+public:
+	alumno(string nombre,int edad, string codigo, float nota);
+	~alumno(void);
+	void mostraralumno();
+};
+
+#include "StdAfx.h"
+#include "alumno.h"
+#include "persona.h"
+#include <iostream>
+#include <string>
+using namespace std;
+
+alumno::alumno(string _nombre,int _edad, string _codigo, float _nota):persona(_nombre, _edad)
+{
+	codigo=_codigo;
+	nota=_nota;
+}
+
+
+alumno::~alumno(void)
+{
+}
+void alumno::mostraralumno()
+{
+	mostrarpersona();
+	cout<<"Su codigo es: "<<codigo<<" Su nota es: "<<nota<<endl;
+}
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include "persona.h"
+#include "alumno.h"
+#include "conio.h"
+using namespace std;
+
+void main()
+{
+	string nombre;
+	string codigo;
+	int edad;
+	float nota;
+	cout<<"Ingrese el nombre: ";
+	getline(cin,nombre);
+	cout<< "Ingrese el codigo: ";
+	getline(cin,codigo);
+	cout << "Ingrese la nota:";
+	cin >> nota;
+	cout<<"Ingrese edad: ";
+	cin >> edad;
+	
+	alumno a1(nombre,edad,codigo,nota);
+	a1.mostraralumno();
+	getch();
+}
+
