@@ -1,0 +1,110 @@
+#pragma once
+class shape
+{
+protected:
+	float b, h, r;
+public:
+	void setbase(float b);
+    void setheight(float h);
+	void setradio(float r);
+};
+#include "StdAfx.h"
+#include "shape.h"
+
+
+void shape::setbase(float _b)
+{
+	b=_b;
+}
+
+
+void shape::setheight(float _h)
+{
+	h=_h;
+}
+void shape::setradio(float _r)
+{
+	r=_r;
+}
+
+#pragma once
+#include "shape.h"
+class rectangulo: public shape
+{
+public:
+	rectangulo(void);
+	~rectangulo(void);
+	float area()
+	{
+		return(b*h);
+	}
+};
+#include "StdAfx.h"
+#include "rectangulo.h"
+
+
+rectangulo::rectangulo(void)
+{
+}
+
+
+rectangulo::~rectangulo(void)
+{
+}
+
+#pragma once
+#include "shape.h"
+class circulo: public shape
+{
+public:
+	circulo(void);
+	~circulo(void);
+	float areac()
+	{
+		return(3.1416*r*r);
+	}
+};
+
+
+#include "StdAfx.h"
+#include "circulo.h"
+
+
+circulo::circulo(void)
+{
+}
+
+
+circulo::~circulo(void)
+{
+}
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "shape.h" 
+#include "rectangulo.h"
+#include "circulo.h"
+using namespace std;
+
+void main()
+{
+	float b, h, r;
+	cout << "Ingrese la base: ";
+	cin >> b;
+	cout << "Ingrese altura: ";
+	cin>> h;
+	cout << "Ingrese radio";
+	cin>> r;
+
+	rectangulo r1;
+	circulo c1;
+	r1.setbase(b);
+	r1.setheight(h);
+	c1.setradio(r);
+	cout<<"el area del rectangulo es: "<< r1.area()<<endl;
+	cout <<"el area del circulo es: " << c1.areac();
+	getch();
+}
+
+
