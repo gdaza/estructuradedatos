@@ -1,0 +1,66 @@
+#pragma once
+#include <iostream>
+#define MAX 100
+using namespace std;
+class Cola
+{
+private:
+	int cima, fin;
+	int cola[MAX];
+public:
+	Cola()
+	{
+		cima = fin = 0;
+	}
+	bool colar(int x)
+	{
+		if(cima==(fin+1)%MAX)
+		{
+			return false;
+		}else{
+			cola[fin]=x;
+			fin=(fin+1)%MAX;
+			return true;
+		}
+	}
+	bool desencolar(int x)
+	{
+		if(cima==fin)
+		{
+			return false;
+		}else{
+			x= cola[cima];
+            cima= (cima+1)%MAX;
+            return true;
+		}
+	}
+	bool mostrar(int n)
+	{
+		for(int i=0; i<n; i++)
+		{
+			cout<<cola[i];
+		}
+		return true;
+	}
+
+};
+
+#include "stdafx.h"
+#include <iostream>
+#include "Cola.h"
+using namespace std;
+
+void main()
+{
+	int n, x;
+	cout << "ingrese el tamaño de la cola: ";
+	cin>>n;
+	Cola c1;
+	for(int i=0;i<n;i++)
+	{
+		cin>>x;
+		c1.colar(x);
+	}
+	cout<<c1.mostrar(n);
+	system("pause");
+}
