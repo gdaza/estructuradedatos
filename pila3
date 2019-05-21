@@ -1,0 +1,81 @@
+pragma once
+#define MAX 100
+class Pila{
+private: 
+	  int pila[MAX];
+	  int cima;
+public:
+	Pila(void);
+	bool Apilar(int elemento);
+	bool Desapilar(int elemento);
+	void mostrarpila();
+	bool Pilallena();
+	bool Pilavacia();
+	~Pila(void);
+};
+
+-----------------------------------------
+
+#include "StdAfx.h"
+#include "Pila.h"
+#include<iostream>
+using namespace std;
+#define MAX 100
+
+
+Pila::Pila(void)
+{
+	cima=-1;
+}
+bool Pila::Apilar(int elemento){
+	bool resp;
+	if(cima==MAX-1){
+		cout<<"La Pila esta llena"<<endl;
+		resp=false;
+	}else{
+	  cima++;
+	  pila[cima]=elemento;
+	  resp=true;
+	}
+	return resp;
+}
+bool Pila::Desapilar(int elemento){
+	bool resp;
+	if(cima==-1){
+	  cout<<"La Pila esta vacia"<<endl;
+	  resp=false;
+	}else{
+	  cima--;
+	  resp=true;
+	}
+	return resp;
+}
+bool Pila::Pilallena(){
+	return (cima==MAX-1);
+}
+bool Pila::Pilavacia(){
+	return(cima==-1);
+}
+
+Pila::~Pila(void)
+{
+}
+
+-----------------------------------------------
+
+
+// Ejempila.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "Pila.h"
+#include<iostream>
+using namespace std;
+#define MAX 100
+
+int main()
+{
+	Pila p1();
+
+	return 0;
+}
