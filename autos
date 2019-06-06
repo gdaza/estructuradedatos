@@ -1,0 +1,297 @@
+Nodo.h 
+
+
+
+#pragma once
+
+#include "Info.h"
+
+#include "iostream"
+
+#define MAX 100
+
+using namespace std;
+
+
+
+class Nodo { public:
+
+	Info Pila[MAX];
+
+	int cima;
+
+
+
+	Nodo(void){
+
+		cima = -1;
+
+	}
+
+
+
+	bool apilar (Info _auto){
+
+	 bool resp;
+
+	 if(cima == MAX-1){
+
+		 cout<<"No se puede ingresar otro auto en la pila, (overflow)";
+
+		 return resp = false;
+
+	 }else{
+
+		 cima++;
+
+		 Pila[cima]= _auto;
+
+		 return resp = true;
+
+	 }
+
+	}
+
+	bool desapilar(){
+
+	bool resp;
+
+	 if(cima == -1){
+
+		 cout<<"Error no hay autos";
+
+		 return resp = false;
+
+	 }else{
+
+		 cima--;
+
+		 return resp = true;
+
+	 }
+
+	}
+
+	void mostrar(){
+
+
+
+		  for(int i=0;i<=cima;i++){
+
+			cout << Pila[i] << endl;
+
+		}
+
+	}
+
+	bool pilavacia(){
+
+		if(cima==-1){
+
+		 return true;
+
+		}
+
+	}
+
+	~Nodo(void);
+
+};
+
+
+
+
+
+Info.h 
+
+
+
+
+
+#pragma once
+
+
+
+
+
+#include <string>
+
+using namespace std;
+
+
+
+class Info
+
+{
+
+	public:
+
+    string placa;
+
+	double chasis;
+
+	string marca;
+
+	string modelo;
+
+	int year;
+
+
+
+	Info(){
+
+		placa = "UnKnow";
+
+		marca = "UnKnow";
+
+		modelo = "UnKnow";
+
+		chasis = 0;
+
+		year = 0; 
+
+	}
+
+
+
+	void saveplaca( string _placa){
+
+		placa = _placa;
+
+	
+
+	}
+
+	void savemarca( string _marca){
+
+		marca = _marca;
+
+	}
+
+	void savemodelo( string _modelo){
+
+		modelo=_modelo;
+
+	}
+
+	void savechasis( double _chasis){
+
+		chasis=_chasis;
+
+	}
+
+	void saveyear( int _year){
+
+		year=_year;
+
+	}
+
+
+
+	~Info(void);
+
+};
+
+
+
+// Transito1.cpp : Defines the entry point for the console application.
+
+//
+
+
+
+#include "stdafx.h"
+
+#include "Nodo.h"
+
+#include "Info.h"
+
+
+
+void crearauto(); 
+
+
+
+int main(){
+
+Nodo nodo;
+
+  int opcion;
+
+  do {
+
+    cout << "--------Transito--------- " << endl;
+
+    cout << "[1]Apilar Auto" << endl;
+
+    cout << "[2]Desapilar Auto" << endl;
+
+    cout << "[3]Mostrar" << endl;
+
+	cout << "[4]Registrar Auto" << endl;
+
+    cout << "[0]Salir" << endl;
+
+    cout << "\nIngresa tu opcion: ";
+
+    cin >> opcion;
+
+    switch (opcion) {
+
+    case 1:
+
+      nodo.apilar(Info auto1);
+
+      break;
+
+    case 2:
+
+      l.pop();
+
+      break;
+
+    case 3:
+
+      l.show();
+
+      break;
+
+	case 4: {
+
+		Info auto1;
+
+	  }
+
+      
+
+      break;
+
+    case 0:
+
+      return 0;
+
+      break;
+
+    default:
+
+      cout << "Por favor ingresa una opcion correcta.\n";
+
+      break;
+
+    }
+
+  } while (opcion!=0);
+
+  return 0;
+
+}
+
+
+
+void crearauto(){
+
+	Info auto1;
+
+
+
+}
