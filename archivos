@@ -1,0 +1,192 @@
+#pragma once
+
+#include <conio.h>
+
+#include <iostream>
+
+using namespace std;
+
+
+
+//Tipo de dato que contendra la lista
+
+typedef char DATA_TYPE;
+
+
+
+struct nodo {
+
+	DATA_TYPE data; 
+
+	nodo *next;
+
+};
+
+
+
+class stackDin {
+
+
+
+	int ITEMSIZE;
+
+	int ITEMS;
+
+	nodo *SP;
+
+
+
+public:
+
+	//constructor
+
+	stackDin();
+
+	
+
+	//destructor
+
+	~stackDin();
+
+	//agregar componente a la lista
+
+	DATA_TYPE put(DATA_TYPE valor);
+
+	int empty();
+
+
+
+	DATA_TYPE get();
+
+};
+
+
+
+-----------------------------------------------------------------------------------
+
+#include "StdAfx.h"
+
+#include "stackDin.h"
+
+
+
+
+
+stackDin::stackDin() : SP(NULL), ITEMS(0), ITEMSIZE(sizeof(DATA_TYPE)) {}
+
+
+
+stackDin::~stackDin() {}
+
+
+
+//agregar componete a la lista 
+
+DATA_TYPE stackDin::put(DATA_TYPE valor)
+
+{
+
+	nodo *temp;
+
+
+
+	temp= new nodo; // crea un nuevo objeto de la clase nodo
+
+	if (temp==NULL) return -1;
+
+	
+
+	temp->data = valor;
+
+	temp->next = SP;
+
+	SP = temp;
+
+	ITEMS ++;
+
+	return valor;
+
+}
+
+
+
+int stackDin::empty() {return ITEMS == 0;} //retorna el equivalente a 1 como true
+
+
+
+//retirar elemento de la lista
+
+
+
+DATA_TYPE stackDin::get()
+
+{
+
+	nodo *temp;
+
+	DATA_TYPE d;
+
+
+
+	if( empty() )return -1;
+
+
+
+	d = SP->data;
+
+	temp = SP->next;
+
+	if(SP) delete SP;
+
+	SP = temp;
+
+	ITEMS --;
+
+	return d;
+
+}
+
+----------------------------------------------------------------------------------------------
+
+// ejeomlopiladin.cpp : Defines the entry point for the console application.
+
+//
+
+
+
+#include "stdafx.h"
+
+#include "stackDin.h"
+
+
+
+int main()
+
+{
+
+	stackDin s;
+
+	DATA_TYPE d;
+
+
+
+	 // llenando la pila
+
+    for (d='A'; d<='Z'; d++) s.put(d);
+
+
+
+    while( !s.empty() )
+
+     cout << (DATA_TYPE)s.get()<< "  ";
+
+ 
+
+    cout << "\nPara terminar oprima <Enter>...";
+
+	cin.get();
+
+    return 0;
+
+
+
